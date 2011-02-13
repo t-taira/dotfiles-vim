@@ -1,0 +1,9 @@
+= Install
+
+$ cd
+$ git clone git@github.com:t-taira/dotfiles-vim.git
+$ cd dotfiles-vim
+$ git submodule update --init
+$ ln -s ~/dotfiles-vim/.vim/bundle/vim-pathogen/autoload/pathogen.vim ~/dotfiles-vim/.vim/autoload/pathogen.vim
+$ ln -s ~/dotfiles-vim/.vim ~/.vim
+$ ln -s ~/dotfiles-vim/.vimrc ~/.vimrc
