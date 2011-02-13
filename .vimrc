@@ -59,9 +59,7 @@ set visualbell t_vb=       " no beep
 " -------------------
 " ステータスライン
 " -------------------
-"set statusline=%y%{GetStatusEx()}%F%m%r%=<%c:%l>
 set statusline=%y%<%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%f%m%r%h%w%=<%l,%c%V>%6p%%
-"set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%=%l,%c%v%8p
 
 " -------------------
 " 補完
@@ -72,7 +70,6 @@ set wildmode=list:longest,list:full " list:longest 複数あれば全て羅列�
 " 検索
 " -------------------
 set hlsearch     " ハイライト
-"set nohlsearch
 set ignorecase   " 大文字小文字区別無し
 set incsearch    " インクリメンタルサーチ
 set smartcase    " 大文字が含まれていれば区別して検索
@@ -95,26 +92,6 @@ imap <C-o> <C-x><C-o>
 imap { {}<LEFT>
 imap [ []<LEFT>
 imap ( ()<LEFT>
-"imap <silent> <C-p> <Space>=> <RIGHT>
-"Tabs
-nnoremap <Space>t t
-nnoremap <Space>T T
-nnoremap t <Nop>
-nnoremap <silent> tc :<C-u>tabnew<CR>:tabmove<CR>
-nnoremap <silent> tk :<C-u>tabclose<CR>
-nnoremap <silent> tn :<C-u>tabnext<CR>
-nnoremap <silent> tp :<C-u>tabprevious<CR>
-"fuzzyfinder
-nnoremap <Space>f f
-nnoremap <Space>F F
-nnoremap f <Nop>
-nnoremap <unique> <silent> fb :<C-u>FufBuffer!<CR>
-nnoremap <unique> <silent> ff :<C-u>FufFile! <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
-nnoremap <unique> <silent> <C-t> :<C-u>FufFile! <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
-nnoremap <unique> <silent> fm :<C-u>FufMruFile!<CR>
-nnoremap <unique> <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
-nnoremap <unique> <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile! <C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
-nnoremap <unique> <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
 
 " -------------------
 " filetype
@@ -128,9 +105,6 @@ autocmd BufNewFile *.js set ft=javascript fenc=utf-8
 
 " -------------------
 " autocmd
-" -------------------
-" 挿入モード時、paste オプションを解除する
-"autocmd InsertLeave * set nopaste
 
 " 自動的に QuickFix リストを表示する
 autocmd QuickFixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
@@ -139,6 +113,7 @@ autocmd QuickFixCmdPost lmake,lgrep,lgrepadd,lvimgrep,lvimgrepadd lwin
 "前回表示箇所を記憶
 autocmd BufWritePost * mkview
 autocmd BufReadPost * loadview
+
 " -------------------
 " function 
 " -------------------
@@ -191,27 +166,6 @@ endfunction
 
 au BufRead,BufNewFile *_spec.rb :command! Rs :call Rspec()
 
-"fuzzy_finder
-autocmd FileType fuf nmap <C-c> <ESC>
-let g:fuf_patternSeparator = ' '
-let g:fuf_modesDisable = ['mrucmd']
-let g:fuf_mrufile_exclude = '\v\.DS_Store|\.git|\.swp|\.svn'
-let g:fuf_mrufile_maxItem = 100
-let g:fuf_enumeratingLimit = 20
-let g:fuf_file_exclude = '\v\.DS_Store|\.git|\.swp|\.svn'
-
-"smartchr
-"inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ', '=')
-"inoremap <buffer> <expr> <S-=> smartchr#loop(' + ', '+')
-"inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
-"inoremap <buffer> <expr> , smartchr#loop(', ', ',')
-"inoremap <buffer> <expr> . smartchr#loop('.', '<%=  %>', '<%  %>')
-"inoremap <buffer> <expr> . smartchr#loop('.', '<%=  %><LEFT><LEFT><LEFT>', '<%  %><LEFT><LEFT><LEFT>')
-
-"rsense
-"let g:rsenseHome = "/Users/snoozer/lib/rsense-0.3"
-"let g:rsenseUseOmniFunc = 1
-
 "neocomplcache
 " 起動時に有効
 let g:neocomplcache_enable_at_startup = 1 
@@ -219,12 +173,6 @@ let g:neocomplcache_enable_at_startup = 1
 let g:NeoComplCache_SnippetsDir = $HOME . '/.vim/snippet'
 " 補完候補の数
 let g:neocomplcache_max_list = 5
-
-"let g:NeoComplCache_EnableSkipCompletion = 0
-"if !exists('g:NeoComplCache_OmniPatterns')
-"  let g:NeoComplCache_OmniPatterns = {}
-"endif
-"let g:NeoComplCache_OmniPatterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 " zencoding
 let g:user_zen_settings = { 'indentation':'    ' }
