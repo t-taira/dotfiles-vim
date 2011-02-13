@@ -1,3 +1,5 @@
-doc/tags
-doc/tags-ja
-.vim/bundle/vim-pathogen/autoload/pathogen.vim
+*.swp
+.vim/.netrwhist
+.vim/view/*
+.vim/autoload/pathogen.vim
+
